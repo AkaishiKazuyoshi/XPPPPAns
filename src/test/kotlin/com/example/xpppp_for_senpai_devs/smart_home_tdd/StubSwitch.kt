@@ -13,4 +13,8 @@ class StubSwitch: Switch {
         switchIsOnCounter += 1
         return true
     }
+
+    override fun isOnCounterReset() {
+        TODO("Not yet implemented")
+    }
 }

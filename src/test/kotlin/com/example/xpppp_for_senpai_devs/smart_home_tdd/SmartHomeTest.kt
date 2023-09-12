@@ -51,4 +51,11 @@ class SmartHomeTest {
         assertTrue(house.bulbWarning)
     }
 
+    @Test
+    fun `test_isOnCounterResetが呼ばれたらisOnCounterを0にする`() {
+        val switch = S9000()
+        switch.switchIsOnCounter = 100
+        switch.isOnCounterReset()
+        assertEquals(switch.switchIsOnCounter, 0)
+    }
 }

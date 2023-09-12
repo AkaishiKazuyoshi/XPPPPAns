@@ -14,6 +14,7 @@ interface Bulb {
 }
 interface Switch {
     fun isOn(): Boolean
+    fun isOnCounterReset()
     var switchIsOnCounter: Int
 }
 interface Display {

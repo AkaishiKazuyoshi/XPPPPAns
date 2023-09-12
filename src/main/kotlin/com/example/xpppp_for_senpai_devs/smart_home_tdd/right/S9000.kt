@@ -10,4 +10,8 @@ class S9000: Switch {
         switchIsOnCounter += 1
         return true
     }
+
+    override fun isOnCounterReset() {
+        switchIsOnCounter = 0
+    }
 }
