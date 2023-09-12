@@ -5,7 +5,9 @@ package com.example.xpppp_for_senpai_devs.smart_home_tdd.right
 
 
 class S9000: Switch {
+    override var switchIsOnCounter = 0
     override fun isOn(): Boolean {
+        switchIsOnCounter += 1
         return true
     }
 }

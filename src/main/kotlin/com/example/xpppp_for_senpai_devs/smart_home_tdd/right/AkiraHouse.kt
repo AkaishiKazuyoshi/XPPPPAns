@@ -14,6 +14,7 @@ interface Bulb {
 }
 interface Switch {
     fun isOn(): Boolean
+    var switchIsOnCounter: Int
 }
 interface Display {
     fun displayBulbWarning()
