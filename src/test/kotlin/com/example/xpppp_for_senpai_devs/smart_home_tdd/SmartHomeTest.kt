@@ -4,6 +4,7 @@ import com.example.xpppp_for_senpai_devs.smart_home_tdd.right.AkiraHouse
 import com.example.xpppp_for_senpai_devs.smart_home_tdd.right.B9000
 import com.example.xpppp_for_senpai_devs.smart_home_tdd.right.D9000
 import com.example.xpppp_for_senpai_devs.smart_home_tdd.right.S9000
+import com.sun.source.tree.AssertTree
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -28,7 +29,6 @@ class SmartHomeTest {
     fun `test_SwitchのisOnメソッドが押された回数を保存できる`() {
         val switch = S9000()
 
-
         assertEquals(switch.switchIsOnCounter, 0)
         switch.isOn()
         assertEquals(switch.switchIsOnCounter, 1)
@@ -37,4 +37,18 @@ class SmartHomeTest {
         switch.isOn()
         assertEquals(switch.switchIsOnCounter, 3)
     }
+
+    @Test
+    fun `test_swichIsOnCounterが5になったらbulbWarningをtrueにする`() {
+        val bulb = B9000()
+        val stubSwitch = StubSwitch()
+        stubSwitch.switchIsOnCounter = 5
+        val display = D9000()
+        val house = AkiraHouse(bulb, stubSwitch, display)
+
+        house.run()
+
+        assertTrue(house.bulbWarning)
+    }
+
 }

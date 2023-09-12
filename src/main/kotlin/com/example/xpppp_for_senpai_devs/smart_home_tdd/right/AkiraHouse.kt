@@ -24,6 +24,9 @@ class AkiraHouse(val bulb: Bulb, val switch: Switch, val display: Display): Smar
     override var bulbWarning = false
     override fun run() {
         lighting(bulb, switch)
+        if (switch.switchIsOnCounter >= 5) {
+            bulbWarning = true
+        }
         if (bulbWarning) {
             display.displayBulbWarning()
         }
