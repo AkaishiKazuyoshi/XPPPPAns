@@ -7,3 +7,22 @@ package com.example.xpppp_for_senpai_devs.smart_home_tdd.right
 //次にアキラくんの家（class AkiraHouse)を宣言し実装しましょう
 //アキラくんの家はSmartHomeのインターフェースを継承する形で定義してください。
 //アキラくんの家は依存関係を注入できるようにコンストラクターの引数を設定しましょう。
+
+interface SmartHouse {
+    fun run()
+}
+
+class AkiraHouse(val bulb: Bulb, val switch: Switch, val display: Display): SmartHouse {
+    override fun run() {
+        lighting(bulb, switch)
+    }
+
+    private fun lighting(bulb: Bulb, switch: Switch) {
+        if(switch.isOn()) {
+            bulb.turnON()
+        } else {
+            bulb.turnOff()
+        }
+    }
+}
+
