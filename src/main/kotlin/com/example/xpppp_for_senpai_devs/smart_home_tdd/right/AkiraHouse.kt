@@ -20,8 +20,12 @@ interface Display {
 }
 
 class AkiraHouse(val bulb: Bulb, val switch: Switch, val display: Display): SmartHouse {
+    override var bulbWarning = false
     override fun run() {
         lighting(bulb, switch)
+        if (bulbWarning) {
+            display.displayBulbWarning()
+        }
     }
 
     private fun lighting(bulb: Bulb, switch: Switch) {

@@ -2,6 +2,8 @@ package com.example.xpppp_for_senpai_devs.smart_home_tdd.right
 //SmartHomeのインターフェースを宣言してください。
 interface SmartHouse {
     fun run()
+
+    var bulbWarning:Boolean
 }
 
 //main関数はスマートホームに必要な部品のインスタンスを作成し、アキラくんの家に依存を注入する。
