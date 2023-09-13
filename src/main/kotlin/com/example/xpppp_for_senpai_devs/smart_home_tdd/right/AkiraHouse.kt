@@ -24,6 +24,9 @@ interface Display {
 class AkiraHouse(val bulb: Bulb, val switch: Switch, val display: Display): SmartHouse {
     override var bulbWarning = false
     override fun run() {
+        if (switch.switchIsOnCounter == 0) {
+            bulbWarning = false
+        }
         lighting(bulb, switch)
         if (switch.switchIsOnCounter >= 5) {
             bulbWarning = true

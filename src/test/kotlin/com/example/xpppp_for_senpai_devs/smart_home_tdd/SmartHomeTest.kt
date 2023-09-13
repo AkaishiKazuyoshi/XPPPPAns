@@ -5,8 +5,7 @@ import com.example.xpppp_for_senpai_devs.smart_home_tdd.right.B9000
 import com.example.xpppp_for_senpai_devs.smart_home_tdd.right.D9000
 import com.example.xpppp_for_senpai_devs.smart_home_tdd.right.S9000
 import com.sun.source.tree.AssertTree
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 class SmartHomeTest {
@@ -20,6 +19,7 @@ class SmartHomeTest {
         val spyDisplay = SpyInfoDisplay()
         val house = AkiraHouse(bulb, switch, spyDisplay)
         house.bulbWarning = true
+        switch.switchIsOnCounter = 2 //後の実装で0だとbulbWarinigをfalseにしてしまうため、追加
         house.run()
 
         assertTrue(spyDisplay.displayBulbWarinigWasCalled)
@@ -57,5 +57,20 @@ class SmartHomeTest {
         switch.switchIsOnCounter = 100
         switch.isOnCounterReset()
         assertEquals(switch.switchIsOnCounter, 0)
+    }
+
+    @Test
+    fun `test_isOnCounterが0の時bulbWarningをfalseにする`() {
+        val bulb = B9000()
+        val switch = S9000()
+        switch.switchIsOnCounter = 1000
+        val display = D9000()
+        val house = AkiraHouse(bulb, switch, display)
+        house.bulbWarning = true
+
+        switch.isOnCounterReset()
+        house.run()
+
+        assertFalse(house.bulbWarning)
     }
 }
